@@ -1,59 +1,104 @@
-import React, { Component, FormEvent, FormEventHandler } from 'react'
-import {updateTextFields} from 'materialize-css';
+import React, { Component, FormEvent, FormEventHandler, createRef } from "react";
+import { Toast } from "materialize-css";
+import { RouteChildrenProps } from "react-router";
+import HTTPUtil from "../util/HTTPUtil";
 
-export default class SignIn extends Component {
+interface SignInProps extends RouteChildrenProps {
+  onSignIn: Function;
+}
+
+export default class SignIn extends Component<SignInProps> {
+  private formRef = createRef<HTMLFormElement>();
+
+  constructor(props: SignInProps) {
+    super(props);
+  }
+
   state = {
     username: '',
     password: ''
-  }
-  handleChange: FormEventHandler;
-  handleSubmit: FormEventHandler;
+  };
 
-  constructor(props: any) {
-    super(props)
+  handleChange = (event: FormEvent<HTMLInputElement>) => {
+    this.setState({
+      [event.currentTarget.id]: event.currentTarget.value
+    });
+  };
+
+  handleSubmit = async (event:FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    let http = new HTTPUtil();
+    let login = await http.POST('http://localhost:5000/login', JSON.stringify({username: this.state.username, password: this.state.password}))
+
+    let data = await login.json();
+    let authHeader = login.headers.get('Authorization');
+
+    //TODO: Shouldnt put this in localStorage
+    localStorage.setItem('auth', authHeader || '');
     
-    this.handleChange = (event: FormEvent<HTMLInputElement>) => {
-      this.setState({
-        [event.currentTarget.id]: event.currentTarget.value
-      });
+
+    if(login.ok) {
+      let form = this.formRef.current as HTMLFormElement;
+      new Toast({html: data.message, classes: 'green'});
+      
+      // Resetting only the state doesn't reset input styles
+      this.setState({username: '', password: ''});
+      form.reset();
+
+      this.props.onSignIn();
+
+      // Redirect here
+      this.props.history.push('/');
+    } else {
+      new Toast({html: data.message, classes: 'red'});
     }
 
-    this.handleSubmit = (event: FormEvent) => {
-      event.preventDefault();
-      console.log(event.currentTarget);
-    }
-    
-  }
-
-  componentDidMount() {
-    updateTextFields();
   }
 
   render() {
     return (
       <div className="container">
-        <div className="card hoverable">
+      <h2>Sign In</h2>
+        <form ref={this.formRef} onSubmit={this.handleSubmit} className="row">
           <div className="row">
-            <form onSubmit={this.handleSubmit} className="col s12">
-              <div className="row">
-                <div className="input-field col s12">
-                  <i className="material-icons prefix">account_circle</i>
-                  <label htmlFor="username">Username</label>
-                  <input onChange={this.handleChange} id="username" type="text" className="validate" />
-                </div>
-                <div className="input-field col s12">
-                  <i className="material-icons prefix">account_circle</i>
-                  <input onChange={this.handleChange} id="password" type="password" className="validate" />
-                  <label htmlFor="password">Password</label>
-                </div>
-                <button className="btn btn-large waves-effect waves-light" type="submit" name="action">Submit
-                  <i className="material-icons right">send</i>
-                </button>
-              </div>
-            </form>
+            <div className="input-field col s12">
+              <i className="material-icons prefix">account_circle</i>
+              <label htmlFor="username">Username</label>
+              <input
+                onChange={this.handleChange}
+                id="username"
+                type="text"
+                value={this.state.username}
+                className="validate"
+                autoComplete="off"
+                required
+              />
+            </div>
+            <div className="input-field col s12">
+              <i className="material-icons prefix">lock</i>
+              <input
+                onChange={this.handleChange}
+                id="password"
+                type="password"
+                value={this.state.password}
+                className="validate"
+                autoComplete="off"
+                required
+              />
+              <label htmlFor="password">Password</label>
+            </div>
+            <button
+              className="btn btn-large waves-effect waves-light"
+              type="submit"
+              name="action"
+            >
+              Submit
+              <i className="material-icons right">send</i>
+            </button>
           </div>
-        </div>
+        </form>
       </div>
-    )
+    );
   }
 }

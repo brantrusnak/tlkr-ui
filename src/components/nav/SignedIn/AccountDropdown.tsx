@@ -1,13 +1,28 @@
 import React, { Component } from "react";
 import { Dropdown } from "materialize-css";
+import { NavLink } from "react-router-dom";
+import { NavProps } from "../Nav";
 
-export default class AccountDropdown extends Component {
+export default class AccountDropdown extends Component<NavProps> {
+
   componentDidMount() {
     let accountDropdownTrigger = document.querySelectorAll(".dropdown-trigger");
     Dropdown.init(accountDropdownTrigger, {
       alignment: "left",
       coverTrigger: false
     });
+  }
+
+  handleLogout = async () => {
+    // TODO: Use HTTPUtil for this
+    let logout = await fetch('http://localhost:5000/logout');
+    
+    if(logout.ok) {
+      // Redirect
+      this.props.onSignOut();
+      this.props.history.push('/');
+    }
+    
   }
 
   render() {
@@ -25,12 +40,8 @@ export default class AccountDropdown extends Component {
           </li>
         </ul>
         <ul id="account_dropdown" className="dropdown-content">
-          <li>
-            <a href="#!">Settings</a>
-          </li>
-          <li>
-            <a href="#!">Sign Out</a>
-          </li>
+          <li><NavLink to={"/settings"}>Settings</NavLink></li>
+          <li><NavLink onClick={this.handleLogout} to={"/"}>Sign Out</NavLink></li>
         </ul>
       </div>
     );
