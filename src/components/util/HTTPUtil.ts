@@ -16,7 +16,7 @@ export default class HTTPUtil {
   }
 
   public async POST(path: string, body: string | Blob | ArrayBufferView | ArrayBuffer | FormData | URLSearchParams | ReadableStream<Uint8Array> | null | undefined, customHeaders?: Headers) {
-    return await fetch("http://localhost:5000/login", {
+    return await fetch(path, {
       headers: customHeaders || this.headers,
       method: "POST",
       body: body
@@ -27,8 +27,12 @@ export default class HTTPUtil {
     // TODO: Finish this
   }
 
-  public PUT() {
-    // TODO: Finish this
+  public async PUT(path: string, body: string | Blob | ArrayBufferView | ArrayBuffer | FormData | URLSearchParams | ReadableStream<Uint8Array> | null | undefined, customHeaders?: Headers) {
+    return await fetch(path, {
+      headers: customHeaders || this.headers,
+      method: "PUT",
+      body: body
+    })
   }
 
 }
