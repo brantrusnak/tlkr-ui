@@ -1,4 +1,5 @@
 import React, { Component, ConsumerProps } from 'react';
+import HTTPUtil from '../util/HTTPUtil';
 
 interface AuthProviderState {
   isAuthenticated: boolean;
@@ -17,6 +18,18 @@ export interface AuthProviderStore {
 const AuthContext = React.createContext({} as AuthProviderStore);
 
 class AuthProvider extends Component<{}, AuthProviderState> {
+
+  async componentWillMount(){
+    let http = new HTTPUtil();
+    let user = await http.GET('http://localhost:5000/user')
+
+    if(user.ok){
+      this.update({key: 'isAuthenticated', value: true});
+    } else {
+      this.update({key: 'isAuthenticated', value: false});
+    }
+  }
+
   public readonly state = {
     isAuthenticated: false
   };

@@ -20,13 +20,13 @@ export default class App extends Component {
           <AuthProvider>
             <Nav />
             <Switch>
+              <Route path="/" exact component={Homepage} />
+              <Route path="/signin" component={SignIn} />
+              <Route path="/signup" component={SignUp} />
               <ProtectedRoute path="/feed" component={Feed} />
               <ProtectedRoute path="/notifications" component={Notifications} />
               <ProtectedRoute path="/favorites" component={Favorites} />
               <ProtectedRoute path="/settings" component={Settings} />
-              <Route path="/" exact component={Homepage} />
-              <Route path="/signin" component={SignIn} />
-              <Route path="/signup" component={SignUp} />
             </Switch>
           </AuthProvider>
         </div>

@@ -24,6 +24,7 @@ class AccountDropdown extends Component<AuthProviderStore> {
 
     if (logout.ok) {
       // When setting Auth Context to false, ProtectedRoute redirects
+      localStorage.clear();
       this.props.update({ key: 'isAuthenticated', value: false });
     }
   };
