@@ -1,7 +1,13 @@
 import React, { Component, FormEvent, createRef } from 'react';
 import { Toast } from 'materialize-css';
+import HTTPUtil from '../util/HTTPUtil';
+import { RouteChildrenProps } from 'react-router';
 
-export default class SignUp extends Component {
+export default class SignUp extends Component<RouteChildrenProps> {
+  constructor(props: RouteChildrenProps) {
+    super(props);
+  }
+
   private formRef = createRef<HTMLFormElement>();
 
   state = {
@@ -21,24 +27,23 @@ export default class SignUp extends Component {
     event.preventDefault();
 
     //TODO: Use HTTPUtil for this
-    let signup = await fetch('http://localhost:5000/register', {
-      headers: { 'Content-Type': 'application/json' },
-      method: 'POST',
-      body: JSON.stringify(this.state)
-    });
+    let http = new HTTPUtil();
+    let signup = await http.POST(
+      'http://localhost:5000/register',
+      JSON.stringify(this.state)
+    );
 
     let data = await signup.json();
-
     if (signup.ok) {
       let form = this.formRef.current as HTMLFormElement;
       new Toast({ html: data.message, classes: 'green' });
 
       // Resetting only the state doesn't reset input styles
-      this.setState({username: '', password: '', email: '', displayName: ''});
+      this.setState({ username: '', password: '', email: '', displayName: '' });
       form.reset();
 
       // Should we sign them in or redirect them to /signin?
-      
+      this.props.history.push('/signin');
     } else {
       new Toast({ html: data.message, classes: 'red' });
     }

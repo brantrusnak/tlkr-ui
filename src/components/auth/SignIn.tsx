@@ -1,18 +1,35 @@
-import React, { Component, FormEvent, FormEventHandler, createRef } from "react";
-import { Toast } from "materialize-css";
-import { RouteChildrenProps } from "react-router";
-import HTTPUtil from "../util/HTTPUtil";
+import React, { Component, FormEvent, createRef } from 'react';
+import { Toast } from 'materialize-css';
+import { withRouter, RouteComponentProps } from 'react-router';
+import HTTPUtil from '../util/HTTPUtil';
+import { AuthConsumer } from './AuthProvider';
+import { connect } from 'react-redux';
 
-interface SignInProps extends RouteChildrenProps {
-  onSignIn: Function;
+const withUserContext = (Component: any) => {
+  return (props?: any) => {
+      // <Component {...props} />
+    // <AuthConsumer>
+    //   {
+    //     auth => {
+    //     }
+
+    //   }
+    // </AuthConsumer>
+    // <AuthProvider>
+      // <AuthConsumer>
+        // {auth => <Component {...props} update={auth.update} /> }
+      // </AuthConsumer>
+    // </AuthProvider>
+  }
 }
 
-export default class SignIn extends Component<SignInProps> {
-  private formRef = createRef<HTMLFormElement>();
-
-  constructor(props: SignInProps) {
+class SignIn extends Component<RouteComponentProps> {
+  
+  constructor(props: RouteComponentProps) {
     super(props);
   }
+
+  private formRef = createRef<HTMLFormElement>();
 
   state = {
     username: '',
@@ -20,46 +37,46 @@ export default class SignIn extends Component<SignInProps> {
   };
 
   handleChange = (event: FormEvent<HTMLInputElement>) => {
-    this.setState({
-      [event.currentTarget.id]: event.currentTarget.value
-    });
+    this.setState({ [event.currentTarget.id]: event.currentTarget.value });
   };
 
-  handleSubmit = async (event:FormEvent<HTMLFormElement>) => {
+  handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     let http = new HTTPUtil();
-    let login = await http.POST('http://localhost:5000/login', JSON.stringify({username: this.state.username, password: this.state.password}))
+    let login = await http.POST(
+      'http://localhost:5000/login',
+      JSON.stringify(this.state)
+    );
 
     let data = await login.json();
     let authHeader = login.headers.get('Authorization');
 
     //TODO: Shouldnt put this in localStorage
     localStorage.setItem('auth', authHeader || '');
-    
 
-    if(login.ok) {
+    if (login.ok) {
       let form = this.formRef.current as HTMLFormElement;
-      new Toast({html: data.message, classes: 'green'});
-      
+      new Toast({ html: data.message, classes: 'green' });
+
       // Resetting only the state doesn't reset input styles
-      this.setState({username: '', password: ''});
+      this.setState({ username: '', password: '' });
       form.reset();
 
-      this.props.onSignIn();
+      // TODO: Set State Here
+      // this.props.update({key: 'isAuthenticated', value: true})
 
       // Redirect here
-      this.props.history.push('/');
+      this.props.history.push('/feed');
     } else {
-      new Toast({html: data.message, classes: 'red'});
+      new Toast({ html: data.message, classes: 'red' });
     }
-
-  }
+  };
 
   render() {
     return (
       <div className="container">
-      <h2>Sign In</h2>
+        <h2>Sign In</h2>
         <form ref={this.formRef} onSubmit={this.handleSubmit} className="row">
           <div className="row">
             <div className="input-field col s12">
@@ -102,3 +119,6 @@ export default class SignIn extends Component<SignInProps> {
     );
   }
 }
+
+// connect(withUserContext,withRouter)
+export default withRouter(SignIn);

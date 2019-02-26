@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Dropdown } from "materialize-css";
-import { NavLink } from "react-router-dom";
-import { NavProps } from "../Nav";
+import { NavLink, RouteComponentProps, withRouter } from "react-router-dom";
 
-export default class AccountDropdown extends Component<NavProps> {
+class AccountDropdown extends Component<RouteComponentProps> {
+
+  constructor(props: RouteComponentProps) {
+    super(props)
+  }
 
   componentDidMount() {
     let accountDropdownTrigger = document.querySelectorAll(".dropdown-trigger");
@@ -18,8 +21,7 @@ export default class AccountDropdown extends Component<NavProps> {
     let logout = await fetch('http://localhost:5000/logout');
     
     if(logout.ok) {
-      // Redirect
-      this.props.onSignOut();
+      // TODO: Implement Sign Out
       this.props.history.push('/');
     }
     
@@ -47,3 +49,5 @@ export default class AccountDropdown extends Component<NavProps> {
     );
   }
 }
+
+export default withRouter(AccountDropdown);
