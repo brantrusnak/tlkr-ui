@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import SignedOutNavOptions from './SignedOutNavOptions';
 import SignedOutSideNav from './SignedOutSideNav';
 
@@ -10,5 +10,5 @@ export default function SignedOutNav() {
       </ul>
       <SignedOutSideNav />
     </div>
-  )
+  );
 }

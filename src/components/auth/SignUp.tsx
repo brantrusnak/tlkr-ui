@@ -26,7 +26,6 @@ export default class SignUp extends Component<RouteChildrenProps> {
   handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    //TODO: Use HTTPUtil for this
     let http = new HTTPUtil();
     let signup = await http.POST(
       'http://localhost:5000/register',

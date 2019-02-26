@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class Notifications extends Component {
   render() {
-    return (
-      <div>
-        Notifications
-      </div>
-    )
+    return <div>Notifications</div>;
   }
 }

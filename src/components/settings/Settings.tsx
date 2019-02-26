@@ -1,7 +1,7 @@
-import React, { Component, FormEvent } from 'react'
+import React, { Component, FormEvent } from 'react';
 import HTTPUtil from '../util/HTTPUtil';
 import SettingsForm from './SettingsForm';
-import { Toast } from "materialize-css";
+import { Toast } from 'materialize-css';
 
 interface SettingsProps {
   details: {
@@ -23,7 +23,7 @@ export default class Settings extends Component<SettingsProps> {
   async componentWillMount() {
     let http = new HTTPUtil();
     let user = await http.GET('http://localhost:5000/user');
-    if(user.ok) {
+    if (user.ok) {
       let data = await user.json();
       this.setState({
         displayName: data.response.displayName,
@@ -42,20 +42,27 @@ export default class Settings extends Component<SettingsProps> {
   handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let http = new HTTPUtil();
-    let request = await http.PUT('http://localhost:5000/user', JSON.stringify(this.state));
+    let request = await http.PUT(
+      'http://localhost:5000/user',
+      JSON.stringify(this.state)
+    );
     let details = await request.json();
-    if(request.ok) {
-      new Toast({html: details.message, classes: 'green'});
+    if (request.ok) {
+      new Toast({ html: details.message, classes: 'green' });
     } else {
-      new Toast({html: details.message, classes: 'red'});
+      new Toast({ html: details.message, classes: 'red' });
     }
   };
 
   render() {
     return (
       <div>
-        <SettingsForm details={this.state} onChange={this.handleChange} onSubmit={this.handleSubmit} />
+        <SettingsForm
+          details={this.state}
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+        />
       </div>
-    )
+    );
   }
 }

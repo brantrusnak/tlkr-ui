@@ -13,18 +13,6 @@ import { AuthProvider } from './components/auth/AuthProvider';
 const Homepage = () => <h2>Homepage</h2>;
 
 export default class App extends Component {
-  state = {
-    isAuthenticated: false
-  };
-
-  handleSignIn = () => {
-    this.setState({ isAuthenticated: true });
-  };
-
-  handleSignOut = () => {
-    this.setState({ isAuthenticated: false });
-  };
-
   render() {
     return (
       <BrowserRouter>
@@ -37,8 +25,7 @@ export default class App extends Component {
               <ProtectedRoute path="/favorites" component={Favorites} />
               <ProtectedRoute path="/settings" component={Settings} />
               <Route path="/" exact component={Homepage} />
-              <Route path="/signin" exact component={SignIn} />
-              {/* <Route path="/signin" render={props => ( <SignIn {...props} onSignIn={this.handleSignIn} /> )} /> */}
+              <Route path="/signin" component={SignIn} />
               <Route path="/signup" component={SignUp} />
             </Switch>
           </AuthProvider>

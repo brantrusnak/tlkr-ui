@@ -2,30 +2,12 @@ import React, { Component, FormEvent, createRef } from 'react';
 import { Toast } from 'materialize-css';
 import { withRouter, RouteComponentProps } from 'react-router';
 import HTTPUtil from '../util/HTTPUtil';
-import { AuthConsumer } from './AuthProvider';
-import { connect } from 'react-redux';
+import WithAuthContext from './WithAuthContext';
+import { compose } from 'redux';
+import { AuthProviderStore } from './AuthProvider';
 
-const withUserContext = (Component: any) => {
-  return (props?: any) => {
-      // <Component {...props} />
-    // <AuthConsumer>
-    //   {
-    //     auth => {
-    //     }
-
-    //   }
-    // </AuthConsumer>
-    // <AuthProvider>
-      // <AuthConsumer>
-        // {auth => <Component {...props} update={auth.update} /> }
-      // </AuthConsumer>
-    // </AuthProvider>
-  }
-}
-
-class SignIn extends Component<RouteComponentProps> {
-  
-  constructor(props: RouteComponentProps) {
+class SignIn extends Component<RouteComponentProps & AuthProviderStore> {
+  constructor(props: RouteComponentProps & AuthProviderStore) {
     super(props);
   }
 
@@ -63,8 +45,8 @@ class SignIn extends Component<RouteComponentProps> {
       this.setState({ username: '', password: '' });
       form.reset();
 
-      // TODO: Set State Here
-      // this.props.update({key: 'isAuthenticated', value: true})
+      // Update Auth Context State
+      this.props.update({ key: 'isAuthenticated', value: true });
 
       // Redirect here
       this.props.history.push('/feed');
@@ -120,5 +102,4 @@ class SignIn extends Component<RouteComponentProps> {
   }
 }
 
-// connect(withUserContext,withRouter)
-export default withRouter(SignIn);
+export default WithAuthContext(SignIn);

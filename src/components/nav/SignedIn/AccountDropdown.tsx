@@ -1,31 +1,32 @@
-import React, { Component } from "react";
-import { Dropdown } from "materialize-css";
-import { NavLink, RouteComponentProps, withRouter } from "react-router-dom";
+import React, { Component } from 'react';
+import { Dropdown } from 'materialize-css';
+import { NavLink, RouteComponentProps } from 'react-router-dom';
+import WithAuthContext from '../../auth/WithAuthContext';
+import { AuthProviderStore } from '../../auth/AuthProvider';
+import HTTPUtil from '../../util/HTTPUtil';
 
-class AccountDropdown extends Component<RouteComponentProps> {
-
-  constructor(props: RouteComponentProps) {
-    super(props)
+class AccountDropdown extends Component<AuthProviderStore> {
+  constructor(props: AuthProviderStore) {
+    super(props);
   }
 
   componentDidMount() {
-    let accountDropdownTrigger = document.querySelectorAll(".dropdown-trigger");
+    let accountDropdownTrigger = document.querySelectorAll('.dropdown-trigger');
     Dropdown.init(accountDropdownTrigger, {
-      alignment: "left",
+      alignment: 'left',
       coverTrigger: false
     });
   }
 
   handleLogout = async () => {
-    // TODO: Use HTTPUtil for this
-    let logout = await fetch('http://localhost:5000/logout');
-    
-    if(logout.ok) {
-      // TODO: Implement Sign Out
-      this.props.history.push('/');
+    let http = new HTTPUtil();
+    let logout = await http.GET('http://localhost:5000/logout');
+
+    if (logout.ok) {
+      // When setting Auth Context to false, ProtectedRoute redirects
+      this.props.update({ key: 'isAuthenticated', value: false });
     }
-    
-  }
+  };
 
   render() {
     return (
@@ -42,12 +43,18 @@ class AccountDropdown extends Component<RouteComponentProps> {
           </li>
         </ul>
         <ul id="account_dropdown" className="dropdown-content">
-          <li><NavLink to={"/settings"}>Settings</NavLink></li>
-          <li><NavLink onClick={this.handleLogout} to={"/"}>Sign Out</NavLink></li>
+          <li>
+            <NavLink to={'/settings'}>Settings</NavLink>
+          </li>
+          <li>
+            <NavLink onClick={this.handleLogout} to={'/'}>
+              Sign Out
+            </NavLink>
+          </li>
         </ul>
       </div>
     );
   }
 }
 
-export default withRouter(AccountDropdown);
+export default WithAuthContext(AccountDropdown);

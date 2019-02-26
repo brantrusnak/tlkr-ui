@@ -9,7 +9,7 @@ interface UpdateStateArg {
   value: boolean;
 }
 
-interface AuthProviderStore {
+export interface AuthProviderStore {
   state: AuthProviderState;
   update: (arg: UpdateStateArg) => void;
 }
@@ -20,7 +20,7 @@ class AuthProvider extends Component<{}, AuthProviderState> {
   public readonly state = {
     isAuthenticated: false
   };
-  
+
   private update = ({ key, value }: UpdateStateArg) => {
     this.setState({ [key]: value });
   };

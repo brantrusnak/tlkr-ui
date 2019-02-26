@@ -13,8 +13,8 @@ export default function SignedInNavOptions() {
   return (
     <div>
       <li>
-        <NavLink onClick={handleClick} to={'/'}>
-          Home
+        <NavLink onClick={handleClick} to={'/feed'}>
+          Feed
         </NavLink>
       </li>
       <li>

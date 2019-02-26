@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Sidenav } from "materialize-css";
+import React, { Component } from 'react';
+import { Sidenav } from 'materialize-css';
 import SignedOutNavOptions from './SignedOutNavOptions';
 
 export default class SignedOutSideNav extends Component {
   componentDidMount() {
-    let sidenavTrigger = document.querySelectorAll(".sidenav");
+    let sidenavTrigger = document.querySelectorAll('.sidenav');
     Sidenav.init(sidenavTrigger);
   }
   render() {
