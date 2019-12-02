@@ -1,4 +1,4 @@
-import React, { Component, ConsumerProps } from 'react';
+import React, { Component } from 'react';
 import HTTPUtil from '../util/HTTPUtil';
 
 interface AuthProviderState {

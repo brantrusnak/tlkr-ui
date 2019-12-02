@@ -1,15 +1,11 @@
 import React, { Component, FormEvent, createRef } from 'react';
 import { Toast } from 'materialize-css';
-import { withRouter, RouteComponentProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import HTTPUtil from '../util/HTTPUtil';
 import WithAuthContext from './WithAuthContext';
-import { compose } from 'redux';
 import { AuthProviderStore } from './AuthProvider';
 
 class SignIn extends Component<RouteComponentProps & AuthProviderStore> {
-  constructor(props: RouteComponentProps & AuthProviderStore) {
-    super(props);
-  }
 
   private formRef = createRef<HTMLFormElement>();
 

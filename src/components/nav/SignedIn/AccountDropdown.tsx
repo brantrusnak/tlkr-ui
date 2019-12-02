@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { Dropdown } from 'materialize-css';
-import { NavLink, RouteComponentProps } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import WithAuthContext from '../../auth/WithAuthContext';
 import { AuthProviderStore } from '../../auth/AuthProvider';
 import HTTPUtil from '../../util/HTTPUtil';
 
 class AccountDropdown extends Component<AuthProviderStore> {
-  constructor(props: AuthProviderStore) {
-    super(props);
-  }
 
   componentDidMount() {
     let accountDropdownTrigger = document.querySelectorAll('.dropdown-trigger');

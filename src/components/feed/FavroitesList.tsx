@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from './Post';
 
-interface PostListProps {
+interface FavoritesListProps {
   posts:{
     id: number;
     text: string;
@@ -24,7 +24,7 @@ interface PostListProps {
   }[];
 }
 
-export default function PostList(props: PostListProps) {
+export default function PostList(props: FavoritesListProps) {
   let posts = props.posts.map(post => <Post key={post.id} post={post} />);
   return <ul className="collection">{posts}</ul>
 }

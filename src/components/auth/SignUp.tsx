@@ -4,9 +4,6 @@ import HTTPUtil from '../util/HTTPUtil';
 import { RouteChildrenProps } from 'react-router';
 
 export default class SignUp extends Component<RouteChildrenProps> {
-  constructor(props: RouteChildrenProps) {
-    super(props);
-  }
 
   private formRef = createRef<HTMLFormElement>();
 

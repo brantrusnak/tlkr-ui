@@ -7,7 +7,7 @@ import PostList from './PostList';
 export default class Feed extends Component {
   async componentWillMount() {
     let http = new HTTPUtil();
-    let feed = await http.GET('http://localhost:5000/posts');
+    let feed = await http.GET('http://localhost:5000/timeline');
     if (feed.ok) {
       let posts = await feed.json() as {id:number; text: string}[];
       this.setState(posts);
