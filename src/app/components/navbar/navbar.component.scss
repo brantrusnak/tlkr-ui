@@ -1,0 +1,28 @@
+@import "../../../styling/colors.scss";
+nav {
+    background: $navbar-background;
+    color: $navbar-color;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+
+    div.logo {
+        font-size: 2rem;
+        color: white;
+        text-indent: 1rem;
+        user-select: none;
+    }
+
+    div.side {
+        flex: 1;
+        display: flex;
+        &.right {
+            justify-content: flex-end;
+        }
+        &.left {
+            justify-content: flex-start;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+    <label>
+        Username
+        <input tlkrFormInput formControlName="username" type="text">
+    </label>
+
+    <label>
+        Password
+        <input tlkrFormInput formControlName="password" type="password">
+    </label>
+
+    <label>
+        Display Name
+        <input tlkrFormInput formControlName="displayName" type="text">
+    </label>
+
+    <label>
+        Description
+        <input tlkrFormInput formControlName="description" type="text" placeholder="Short description about you">
+    </label>
+
+    <button type="submit" [disabled]="signupForm.invalid" class="btn btn-primary">Submit</button>
+
+</form>

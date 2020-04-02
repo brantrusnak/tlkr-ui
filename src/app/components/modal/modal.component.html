@@ -1,0 +1,11 @@
+<div [style.visibility]="modal.visibility? 'visible': 'hidden'" [ngClass]="{'show': modal.visibility}" class="modal-container">
+
+    <div class="modal-background" (click)="modal.hide();"></div>
+
+    <div class="modal">
+        <div class="modal-exit" (click)="modal.hide()"><i class="fas fa-times fa-2x"></i></div>
+        <h2 *ngIf="modal.heading" class="modal-heading">{{modal.heading}}</h2>
+        <ng-template tlkrModal></ng-template>
+    </div>
+
+</div>

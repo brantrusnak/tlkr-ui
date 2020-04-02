@@ -1,0 +1,48 @@
+div.modal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    &.show {
+        div.modal-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 5;
+        }
+        div.modal {
+            position: relative;
+            min-width: 300px;
+            min-height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 15px 35px rgba(50, 50, 93, 0.2), 0 5px 15px rgba(0, 0, 0, 0.17);
+            color: #525f7f;
+            background-color: #fff;
+            z-index: 10;
+            padding: 3rem;
+            flex-direction: column;
+            div.modal-exit {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin-top: 0.5rem;
+                margin-right: 0.8rem;
+                cursor: pointer;
+            }
+            h2.modal-heading{
+                width: 100%;
+                margin-top: 0;
+            }
+        }
+    }
+}
