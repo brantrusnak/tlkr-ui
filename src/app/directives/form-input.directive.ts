@@ -14,8 +14,8 @@ export class FormInputDirective implements OnInit {
     let errorIcon = document.createElement('i');
 
     iconContainer.classList.add('icon-container')
-    successIcon.classList.add('fas', 'fa-check-circle', 'success')
-    errorIcon.classList.add('fas', 'fa-times-circle', 'error')
+    successIcon.classList.add('fas', 'fa-check', 'success')
+    errorIcon.classList.add('fas', 'fa-times', 'error')
 
     iconContainer.appendChild(successIcon);
     iconContainer.appendChild(errorIcon);
@@ -24,7 +24,6 @@ export class FormInputDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('creating icon');
     this.$element = (this.element.nativeElement as HTMLInputElement);
     this.initalize();
   }

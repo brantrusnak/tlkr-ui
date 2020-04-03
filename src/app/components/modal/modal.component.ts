@@ -12,7 +12,6 @@ export class ModalComponent implements OnInit {
   @ViewChild(ModalDirective, {static: true}) modalContent: ModalDirective;
   @HostListener('document:keydown.escape', ['$event']) onEscape(event: KeyboardEvent) {
     if (this.modal.visibility) {
-      console.log('Hiding modal');
       this.modal.hide();
     }
   };
@@ -20,7 +19,6 @@ export class ModalComponent implements OnInit {
   constructor(public modal: ModalService) { }
   
   ngOnInit(): void {
-    console.log('Registered modal!');
     this.modal.registerModalService(this);
   }
 
