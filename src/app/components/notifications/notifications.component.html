@@ -1,0 +1,13 @@
+<div class="notifications">
+    <div
+        *ngFor="let notification of (notifications.global | async)"
+        class="notification"
+        [ngClass]="{
+            'success': notification.style === 'success',
+            'danger': notification.style === 'danger',
+            'warning': notification.style === 'warning',
+            'info': notification.style === 'info'
+        }">
+        {{ notification.message }}
+    </div>
+</div>

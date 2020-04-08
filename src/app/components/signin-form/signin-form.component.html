@@ -1,1 +1,15 @@
-<p>signin-form works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <label>
+        Username
+        <input tlkrFormInput formControlName="username" type="text">
+    </label>
+
+    <label>
+        Password
+        <input tlkrFormInput formControlName="password" type="password">
+    </label>
+
+    <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+
+</form>

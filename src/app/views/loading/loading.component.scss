@@ -1,0 +1,20 @@
+div.loading-container {
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    i, span {
+        background: linear-gradient(150deg, #281483 15%, #8f6ed5 70%, #d782d9 94%);
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    span{
+        margin-top: 0.5rem;
+        font-size: 2em;
+    }
+}

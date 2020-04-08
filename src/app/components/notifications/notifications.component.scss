@@ -1,0 +1,46 @@
+div.notifications {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    z-index: 20;
+    min-width: 200px;
+
+    div.notification {
+        padding: 1rem 1.5rem;
+        border: 0;
+        font-size: 0.875rem;
+        border-radius: 0.25rem;
+        color: #fff;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        animation-duration: 0.2s;
+        animation-name: slidein;
+        animation-timing-function: ease-in-out;
+        cursor: pointer;
+
+        &.success {
+            background-color: #4fd69c;
+        }
+        &.danger {
+            background-color: #f75676;
+        }
+        &.warning {
+            background-color: #fc7c5f;
+        }
+        &.info {
+            background-color: #37d5f2;
+        }
+    }
+}
+
+@keyframes slidein {
+    from {
+        transform: translateX(110%);
+    }
+  
+    to {
+        transform: translateX(0%);
+    }
+  }

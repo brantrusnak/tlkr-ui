@@ -1,5 +1,6 @@
-<tlkr-navbar></tlkr-navbar>
+<tlkr-navbar *ngIf="showNav"></tlkr-navbar>
 <tlkr-modal #modal></tlkr-modal>
-<div class="router-container">
-    <router-outlet></router-outlet>
+<tlkr-notifications></tlkr-notifications>
+<div class="router-container" [ngClass]="{'true-height': !showNav}">
+    <router-outlet #outlet="outlet"></router-outlet>
 </div>

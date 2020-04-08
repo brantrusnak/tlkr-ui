@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'tlkr-root',
@@ -6,9 +9,24 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./root.component.scss']
 })
 export class RootComponent implements OnInit {
-  constructor() { }
+  @ViewChild('outlet', { static: true }) outlet;
+  showNav = true;
+  routerListener: Subscription;
+
+  constructor(private router: Router) { }
+
+  checkNavbar() {
+    this.showNav = typeof this.outlet.activatedRouteData.showNav !== 'undefined' ? this.outlet.activatedRouteData.showNav : true;
+	}
 
   ngOnInit(): void {
+		this.routerListener = this.router.events
+			.pipe(filter(event => event instanceof NavigationEnd))
+			.subscribe(response => this.checkNavbar());
+  }
+
+  ngOnDestroy(): void {
+    this.routerListener.unsubscribe();
   }
 
 }
