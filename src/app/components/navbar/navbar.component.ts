@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
 import { SigninFormComponent } from '../signin-form/signin-form.component';
 import { SignupFormComponent } from '../signup-form/signup-form.component';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'tlkr-navbar',
@@ -10,7 +11,7 @@ import { SignupFormComponent } from '../signup-form/signup-form.component';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public modal: ModalService) { }
+  constructor(public modal: ModalService, public user: UserService) { }
 
   public loadSignin() {
     this.modal.loadComponent(SigninFormComponent);

@@ -10,6 +10,7 @@ export class ConfigService {
   public readonly login = `${this.$apiUrl}/login`;
   public readonly logout = `${this.$apiUrl}/logout`;
   public readonly register = `${this.$apiUrl}/register`;
+  public readonly user = `${this.$apiUrl}/user`;
 
   constructor() { }
 

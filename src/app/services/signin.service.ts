@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { BehaviorSubject } from 'rxjs';
 import { NotificationService } from './notification.service';
 import { SigninInfo } from '../models/signin';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,16 @@ export class SigninService {
   public success = this.$success.asObservable();
   public error = this.$error.asObservable();
 
-  constructor(private auth: AuthService, private notification: NotificationService) {}
+  constructor(private auth: AuthService, private user: UserService, private notification: NotificationService) {}
 
   public async request(info: SigninInfo, callback?: (success: boolean) => void) {
     this.$requesting.next(true);
     this.$error.next(false);
     this.$success.next(false);
     try {
-      await this.auth.login(info).toPromise();
+      let response = await this.auth.login(info).toPromise();
+      this.auth.storeToken(response.token);
+      this.user.getSelf();
       this.$error.next(false);
       this.$success.next(true);
       this.$requesting.next(false);

@@ -11,6 +11,14 @@ export class AuthService {
 
   constructor(private http: HttpService, private config: ConfigService) { }
 
+  public storeToken(token: string) {
+    localStorage.setItem('auth', token)
+  }
+
+  public getToken(): string {
+    return localStorage.getItem('auth');
+  }
+
   public login(info: SigninInfo) {
     return this.http.post(this.config.login, info)
   }

@@ -4,6 +4,7 @@ import { HomeComponent } from './views/home/home.component';
 import { FeedComponent } from './views/feed/feed.component';
 import { LoginComponent } from './views/login/login.component';
 import { LoadingComponent } from './views/loading/loading.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'feed',
-    component: FeedComponent
+    component: FeedComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',

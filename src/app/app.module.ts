@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RootComponent } from './components/root/root.component';
@@ -16,6 +16,12 @@ import { LoginComponent } from './views/login/login.component';
 import { FeedComponent } from './views/feed/feed.component';
 import { LoadingComponent } from './views/loading/loading.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { UserService } from './services/user.service';
+
+export function initUserFactory(user: UserService) {
+  return () => user.initalize();
+}
 
 @NgModule({
   declarations: [
@@ -38,7 +44,19 @@ import { NotificationsComponent } from './components/notifications/notifications
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initUserFactory,
+      deps: [UserService],
+      multi: true
+    },
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi   : true,
+    }
+  ],
   bootstrap: [RootComponent]
 })
 export class AppModule { }

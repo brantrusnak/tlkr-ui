@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationService } from 'src/app/services/notification.service';
+import { UserService } from 'src/app/services/user.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'tlkr-home',
@@ -7,10 +9,16 @@ import { NotificationService } from 'src/app/services/notification.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  userSubscription: Subscription;
 
-  constructor(public notifications: NotificationService) { }
+  constructor(public user: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.userSubscription = this.user.user.subscribe(user => user ? this.router.navigate(['loading'], {queryParams: { next: 'feed' }}) : false);
+  }
+
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
   }
 
 }
