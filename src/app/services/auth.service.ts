@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { ConfigService } from './config.service';
 import { SignupInfo } from '../models/signup';
+import { SigninInfo } from '../models/signin';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthService {
 
   constructor(private http: HttpService, private config: ConfigService) { }
 
-  public login(info: {username: string, password: string}) {
+  public login(info: SigninInfo) {
     return this.http.post(this.config.login, info)
   }
 

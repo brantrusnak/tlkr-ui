@@ -5,7 +5,6 @@ div.notifications {
     margin-bottom: 1rem;
     margin-right: 1rem;
     z-index: 20;
-    min-width: 200px;
 
     div.notification {
         padding: 1rem 1.5rem;
@@ -13,12 +12,19 @@ div.notifications {
         font-size: 0.875rem;
         border-radius: 0.25rem;
         color: #fff;
-        margin-bottom: 0.5rem;
-        width: 100%;
+        width: auto;
         animation-duration: 0.2s;
         animation-name: slidein;
+        animation-fill-mode: forwards;
+        animation-delay: 0.3s;
         animation-timing-function: ease-in-out;
         cursor: pointer;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transition: margin-bottom 0.3s ease-in-out;
+        transform: translateX(120%);
+        white-space: nowrap;
 
         &.success {
             background-color: #4fd69c;
@@ -37,7 +43,7 @@ div.notifications {
 
 @keyframes slidein {
     from {
-        transform: translateX(110%);
+        transform: translateX(120%);
     }
   
     to {

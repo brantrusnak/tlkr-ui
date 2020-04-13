@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { AuthService } from './auth.service';
-import { SignupInfo } from '../models/signup';
+import { BehaviorSubject } from 'rxjs';
 import { NotificationService } from './notification.service';
+import { SigninInfo } from '../models/signin';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SignupService {
+export class SigninService {
   private $requesting = new BehaviorSubject<boolean>(false);
   private $success = new BehaviorSubject<boolean>(null);
   private $error = new BehaviorSubject<boolean>(null);
@@ -15,14 +15,14 @@ export class SignupService {
   public success = this.$success.asObservable();
   public error = this.$error.asObservable();
 
-  constructor(private auth: AuthService, private notification: NotificationService) { }
+  constructor(private auth: AuthService, private notification: NotificationService) {}
 
-  public async request(info: SignupInfo, callback?: (success: boolean) => void) {
+  public async request(info: SigninInfo, callback?: (success: boolean) => void) {
     this.$requesting.next(true);
     this.$error.next(false);
     this.$success.next(false);
     try {
-      await this.auth.register(info).toPromise();
+      await this.auth.login(info).toPromise();
       this.$error.next(false);
       this.$success.next(true);
       this.$requesting.next(false);

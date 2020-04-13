@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { SigninService } from 'src/app/services/signin.service';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'tlkr-signin-form',
@@ -12,11 +14,10 @@ export class SigninFormComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(5)]]
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private signin: SigninService, private modal: ModalService) { }
 
   onSubmit() {
-    console.log('submit');
-    console.log(this.form.value);
+    this.signin.request(this.form.value, success => success ? this.modal.hide() : false);
   }
 
   ngOnInit(): void {

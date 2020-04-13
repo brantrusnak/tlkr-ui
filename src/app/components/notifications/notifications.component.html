@@ -1,7 +1,8 @@
 <div class="notifications">
     <div
-        *ngFor="let notification of (notifications.global | async)"
+        *ngFor="let notification of (notifications.global | async).reverse(); let index = index;"
         class="notification"
+        [style.marginBottom.px]="index * 64"
         [ngClass]="{
             'success': notification.style === 'success',
             'danger': notification.style === 'danger',
