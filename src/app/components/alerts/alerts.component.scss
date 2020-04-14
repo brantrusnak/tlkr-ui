@@ -1,4 +1,4 @@
-div.notifications {
+div.alerts {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -6,7 +6,7 @@ div.notifications {
     margin-right: 1rem;
     z-index: 20;
 
-    div.notification {
+    div.alert {
         padding: 1rem 1.5rem;
         border: 0;
         font-size: 0.875rem;

@@ -1,0 +1,14 @@
+<div class="alerts">
+    <div
+        *ngFor="let alert of (alertService.global | async).reverse(); let index = index;"
+        class="alert"
+        [style.marginBottom.px]="index * 64"
+        [ngClass]="{
+            'success': alert.style === 'success',
+            'danger': alert.style === 'danger',
+            'warning': alert.style === 'warning',
+            'info': alert.style === 'info'
+        }">
+        {{ alert.message }}
+    </div>
+</div>

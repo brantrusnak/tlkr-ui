@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'tlkr-notifications',
@@ -8,7 +7,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class NotificationsComponent implements OnInit {
 
-  constructor(public notifications: NotificationService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

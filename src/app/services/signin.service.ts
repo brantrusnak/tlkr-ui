@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { BehaviorSubject } from 'rxjs';
-import { NotificationService } from './notification.service';
+import { AlertService } from './alert.service';
 import { SigninInfo } from '../models/signin';
 import { UserService } from './user.service';
 
@@ -16,7 +16,7 @@ export class SigninService {
   public success = this.$success.asObservable();
   public error = this.$error.asObservable();
 
-  constructor(private auth: AuthService, private user: UserService, private notification: NotificationService) {}
+  constructor(private auth: AuthService, private user: UserService, private alert: AlertService) {}
 
   public async request(info: SigninInfo, callback?: (success: boolean) => void) {
     this.$requesting.next(true);
@@ -32,7 +32,7 @@ export class SigninService {
       if (callback) {
         callback(true);
       }
-      this.notification.create({
+      this.alert.create({
         type: 'global',
         style: 'success',
         message: 'Success!'
@@ -44,7 +44,7 @@ export class SigninService {
       if (callback) {
         callback(false);
       }
-      this.notification.create({
+      this.alert.create({
         type: 'global',
         style: 'danger',
         message: `Failed! ${error.error.message}`

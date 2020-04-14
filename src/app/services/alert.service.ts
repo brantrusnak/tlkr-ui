@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Notification } from '../models/notification';
+import { Alert } from '../models/alert';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NotificationService {
-  private $global = new BehaviorSubject<Notification[]>([]);
+export class AlertService {
+  private $global = new BehaviorSubject<Alert[]>([]);
   public global = this.$global.asObservable();
-  private $inline = new BehaviorSubject<Notification[]>([]);
+  private $inline = new BehaviorSubject<Alert[]>([]);
   public inline = this.$inline.asObservable();
 
   constructor() { }
 
-  createNotifications() {
+  createAlerts() {
     this.create({
       type: 'global',
       style: 'success',
@@ -62,22 +62,22 @@ export class NotificationService {
 
   }
 
-  public create(notification: Notification) {
-    if(notification.type === 'global') {
-      this.$global.next([...this.$global.value, notification])
+  public create(alert: Alert) {
+    if(alert.type === 'global') {
+      this.$global.next([...this.$global.value, alert])
     } else {
-      this.$inline.next([...this.$inline.value, notification])
+      this.$inline.next([...this.$inline.value, alert])
     }
-    this.timeRemove(notification);
+    this.timeRemove(alert);
   }
 
-  private timeRemove(notification: Notification) {
+  private timeRemove(alert: Alert) {
     // Maybe this should be set from a component?
-    // Have a notification component -> OnInit -> Register for removal (in component). Click on notification component fires it instantly. Hover pauses timeout. Send it here after timeout.
+    // Have a alert component -> OnInit -> Register for removal (in component). Click on alert component fires it instantly. Hover pauses timeout. Send it here after timeout.
     setTimeout(() => {
-      let copy = notification.type === 'global' ? this.$global.value : this.$inline.value;
+      let copy = alert.type === 'global' ? this.$global.value : this.$inline.value;
       copy.shift();
-      notification.type === 'global' ? this.$global.next(copy) : this.$inline.next(copy);
+      alert.type === 'global' ? this.$global.next(copy) : this.$inline.next(copy);
     }, 5000)
   }
 

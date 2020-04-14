@@ -5,6 +5,9 @@ import { FeedComponent } from './views/feed/feed.component';
 import { LoginComponent } from './views/login/login.component';
 import { LoadingComponent } from './views/loading/loading.component';
 import { AuthGuard } from './guards/auth.guard';
+import { NotificationsComponent } from './views/notifications/notifications.component';
+import { FavoritesComponent } from './views/favorites/favorites.component';
+import { SettingsComponent } from './views/settings/settings.component';
 
 
 const routes: Routes = [
@@ -16,6 +19,21 @@ const routes: Routes = [
   {
     path: 'feed',
     component: FeedComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'notifications ',
+    component: NotificationsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'favorites',
+    component: FavoritesComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
     canActivate: [AuthGuard]
   },
   {
