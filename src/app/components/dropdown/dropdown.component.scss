@@ -1,0 +1,32 @@
+div.dropdown-container {
+    position: relative;
+    div.dropdown {
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        right: 0;
+        min-width: 250px;
+        z-index: 10;
+        padding: 0.5rem 0;
+        margin: 0.125rem 0 0;
+        background-color: #fff;
+        border: 0 solid rgba(0, 0, 0, 0.15);
+        border-radius: 0.3rem;
+        box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1), 0 15px 35px rgba(50, 50, 93, 0.15),
+            0 5px 15px rgba(0, 0, 0, 0.1);
+
+        div.dropdown-option {
+            width: 100%;
+            padding: 1rem;
+            color: #212529;
+            cursor: pointer;
+            user-select: none;
+
+            &:hover {
+                color: #16181b;
+                text-decoration: none;
+                background-color: #f6f9fc;
+            }
+        }
+    }
+}

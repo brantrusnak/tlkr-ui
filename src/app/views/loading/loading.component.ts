@@ -16,7 +16,7 @@ export class LoadingComponent implements OnInit {
     this.paramSubscription = this.route.queryParams.subscribe(params => {
       setTimeout(() => {
         this.router.navigate([params.next])
-      }, 3000)
+      }, 2000)
     })
   }
 

@@ -1,0 +1,1 @@
+export type Style = 'primary' | 'info' | 'success' | 'danger' | 'warning' | 'default' | 'secondary';

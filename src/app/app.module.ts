@@ -18,9 +18,12 @@ import { LoadingComponent } from './views/loading/loading.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UserService } from './services/user.service';
-import { SettingsComponent } from './views/settings/settings.component';
 import { FavoritesComponent } from './views/favorites/favorites.component';
 import { NotificationsComponent } from './views/notifications/notifications.component';
+import { UserSigninComponent } from './components/user-signin/user-signin.component';
+import { UserSignoutComponent } from './components/user-signout/user-signout.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { UserUpdateFormComponent } from './components/user-update-form/user-update-form.component';
 
 export function initUserFactory(user: UserService) {
   return () => user.initalize();
@@ -41,8 +44,11 @@ export function initUserFactory(user: UserService) {
     FeedComponent,
     LoadingComponent,
     NotificationsComponent,
-    SettingsComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    UserSigninComponent,
+    UserSignoutComponent,
+    DropdownComponent,
+    UserUpdateFormComponent
   ],
   imports: [
     BrowserModule,

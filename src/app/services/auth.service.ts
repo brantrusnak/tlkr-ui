@@ -3,6 +3,7 @@ import { HttpService } from './http.service';
 import { ConfigService } from './config.service';
 import { SignupInfo } from '../models/signup';
 import { SigninInfo } from '../models/signin';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
 
   constructor(private http: HttpService, private config: ConfigService) { }
 
-  public storeToken(token: string) {
+  public storeToken(token: string): void {
     localStorage.setItem('auth', token)
   }
 
@@ -19,15 +20,19 @@ export class AuthService {
     return localStorage.getItem('auth');
   }
 
-  public login(info: SigninInfo) {
+  public clearToken(): void {
+    localStorage.removeItem('auth');
+  }
+
+  public login(info: SigninInfo): Observable<any> {
     return this.http.post(this.config.login, info)
   }
 
-  public logout() {
-    return this.http.post(this.config.logout, null);
+  public logout(): Observable<any> {
+    return this.http.get(this.config.logout);
   }
 
-  public register(info: SignupInfo) {
+  public register(info: SignupInfo): Observable<any> {
     return this.http.post(this.config.register, info);
   }
 

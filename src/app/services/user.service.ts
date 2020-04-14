@@ -24,6 +24,13 @@ export class UserService {
     return false
   }
 
+  public async logout() {
+    this.auth.logout().toPromise();
+    this.auth.clearToken();
+    this.$user.next(null);
+    this.isLoggedIn = false;
+  }
+
   public async getSelf() {
     let response = await this.http.get(this.config.user).toPromise();
     this.$user.next(response);
@@ -35,8 +42,12 @@ export class UserService {
     // TODO: Implement.
   }
 
-  public update() {
-    // TODO: Implement.
+  public async update(values: any, callback: () => void) {
+    await this.http.put(this.config.user, values).toPromise();
+    await this.getSelf();
+    if(callback) {
+      callback();
+    }
   }
 
 }

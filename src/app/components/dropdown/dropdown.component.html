@@ -1,0 +1,6 @@
+<div class="dropdown-container">
+    <div *ngIf="expanded" class="dropdown">
+        <div *ngFor="let option of options" class="dropdown-option" (click)="option.callback(option); toggle();">{{option.label}}</div>
+    </div>
+    <button class="btn btn-{{style}}" (click)="toggle()">{{label}}</button>
+</div>

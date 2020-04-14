@@ -1,5 +1,7 @@
+import { Style } from './style';
+
 export interface Alert {
     type: 'inline' | 'global';
-    style: 'success' | 'danger' | 'warning' | 'info';
+    style: Style;
     message: any;
 }

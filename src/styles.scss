@@ -161,10 +161,22 @@ button.btn {
         }
     }
 
+    &.btn-default {
+        color: #fff;
+        background-color: #172b4d;
+        border-color: #172b4d;
+    }
+
     &.btn-primary {
         color: #fff;
         background-color: #5e72e4;
         border-color: #5e72e4;
+    }
+
+    &.btn-secondary {
+        color: #000;
+        background-color: #f4f5f7;
+        border-color: #f4f5f7;
     }
 
     &.btn-neutral {
@@ -172,9 +184,26 @@ button.btn {
     }
 
     &.btn-info {
-        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
         color: #fff;
         background-color: #11cdef;
         border-color: #11cdef;
+    }
+
+    &.btn-success {
+        color: #fff;
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    &.btn-danger {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    &.btn-warning {
+        color: #fff;
+        background-color: #ffc107;
+        border-color: #ffc107;
     }
 }

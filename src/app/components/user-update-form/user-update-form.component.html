@@ -1,0 +1,15 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <label>
+        Display Name
+        <input tlkrFormInput formControlName="displayName" type="text">
+    </label>
+
+    <label>
+        Description
+        <input tlkrFormInput formControlName="description" type="text">
+    </label>
+
+    <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Update</button>
+
+</form>

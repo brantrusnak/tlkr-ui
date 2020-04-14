@@ -7,8 +7,6 @@ import { LoadingComponent } from './views/loading/loading.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotificationsComponent } from './views/notifications/notifications.component';
 import { FavoritesComponent } from './views/favorites/favorites.component';
-import { SettingsComponent } from './views/settings/settings.component';
-
 
 const routes: Routes = [
   {
@@ -29,11 +27,6 @@ const routes: Routes = [
   {
     path: 'favorites',
     component: FavoritesComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'settings',
-    component: SettingsComponent,
     canActivate: [AuthGuard]
   },
   {
