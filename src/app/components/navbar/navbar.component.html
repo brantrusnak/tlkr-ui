@@ -2,8 +2,19 @@
     <div class="side left">
         <div class="logo">tlkr.</div>
     </div>
+    <div *ngIf="(user.user | async) !== null" class="side middle">
+        <div class="nav-item">
+            <a class="nav-item-link" [routerLink]="['/feed']" routerLinkActive="active">Feed</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-item-link" [routerLink]="['/notifications']" routerLinkActive="active">Notifications</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-item-link" [routerLink]="['/favorites']" routerLinkActive="active">Favorites</a>
+        </div>
+    </div>
     <div class="side right">
-        <button *ngIf="(user.user | async) === null" (click)="loadSignin(); modal.show();" class="btn btn-neutral">Sign In</button>
+        <button *ngIf="(user.user | async) === null" (click)="loadSignin(); modal.show();" class="btn btn-primary">Sign In</button>
         <button *ngIf="(user.user | async) === null" (click)="loadSignup(); modal.show();" class="btn btn-info">Sign Up</button>
         <button *ngIf="(user.user | async) !== null" class="btn btn-primary"> {{ (user.user | async)?.displayName }} </button>
     </div>
