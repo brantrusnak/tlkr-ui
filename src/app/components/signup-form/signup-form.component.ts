@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { SignupService } from 'src/app/services/signup.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'tlkr-signup-form',
@@ -9,6 +9,7 @@ import { ModalService } from 'src/app/services/modal.service';
   styleUrls: ['./signup-form.component.scss']
 })
 export class SignupFormComponent implements OnInit {
+  requesting = false;
   form = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(5)]],
     password: ['', [Validators.required, Validators.minLength(5)]],
@@ -16,10 +17,16 @@ export class SignupFormComponent implements OnInit {
     description: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, public signup: SignupService, private modal: ModalService) { }
+  constructor(private fb: FormBuilder, public user: UserService, private modal: ModalService) { }
 
-  onSubmit() {
-    this.signup.request(this.form.value, success => success ? this.modal.hide() : false);
+  async onSubmit() {
+    this.requesting = true;
+    await this.user.signup(this.form.value, success => {
+      this.requesting = false;
+      if(success) {
+        this.modal.hide();
+      }
+    });
   }
 
   ngOnInit(): void {

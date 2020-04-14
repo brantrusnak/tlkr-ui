@@ -4,6 +4,8 @@ import { ConfigService } from './config.service';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../models/user';
 import { AuthService } from './auth.service';
+import { SignupInfo } from '../models/signup';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class UserService {
   public user = this.$user.asObservable();
   public isLoggedIn = false;
 
-  constructor(private http: HttpService, private config: ConfigService, private auth: AuthService) { }
+  constructor(private http: HttpService, private config: ConfigService, private auth: AuthService, private alert: AlertService) { }
 
   public initalize() {
     let token = this.auth.getToken();
@@ -24,7 +26,55 @@ export class UserService {
     return false
   }
 
-  public async logout() {
+  public async signup(info: SignupInfo, callback?: (success: boolean) => void) {
+    try{
+      await this.auth.register(info).toPromise();
+      this.alert.create({
+        type: 'global',
+        style: 'success',
+        message: 'Success!'
+      });
+      if (callback) {
+        callback(true);
+      }
+    } catch (error) {
+      this.alert.create({
+        type: 'global',
+        style: 'danger',
+        message: `Failed! ${error.error.message}`
+      });
+      if(callback) {
+        callback(false);
+      }
+    }
+  }
+
+  public async signin(info: SignupInfo, callback?: (success: boolean) => void) {
+    try {
+      let response = await this.auth.login(info).toPromise();
+      this.auth.storeToken(response.token);
+      this.getSelf();
+      this.alert.create({
+        type: 'global',
+        style: 'success',
+        message: 'Success!'
+      });
+      if (callback) {
+        callback(true);
+      }
+    } catch (error) {
+      this.alert.create({
+        type: 'global',
+        style: 'danger',
+        message: `Failed! ${error.error.message}`
+      });
+      if (callback) {
+        callback(false);
+      }
+    }
+  }
+
+  public async signout() {
     this.auth.logout().toPromise();
     this.auth.clearToken();
     this.$user.next(null);

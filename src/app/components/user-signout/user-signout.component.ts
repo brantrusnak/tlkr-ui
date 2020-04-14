@@ -24,7 +24,7 @@ export class UserSignoutComponent implements OnInit {
     {
       label: 'Logout',
       callback: async () => {
-        await this.user.logout();
+        await this.user.signout();
         this.router.navigate(['/']);
       }
     }

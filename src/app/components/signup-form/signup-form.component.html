@@ -20,9 +20,9 @@
         <input tlkrFormInput formControlName="description" type="text" placeholder="Short description about you">
     </label>
 
-    <button type="submit" [disabled]="form.invalid || (signup.requesting | async) === true" class="btn btn-primary">
-        <span *ngIf="(signup.requesting | async) === false">Submit</span>
-        <span *ngIf="(signup.requesting | async) === true">Loading</span>
+    <button type="submit" [disabled]="form.invalid || requesting === true" class="btn btn-primary">
+        <span *ngIf="requesting === false">Submit</span>
+        <span *ngIf="requesting === true">Loading</span>
     </button>
 
 </form>
