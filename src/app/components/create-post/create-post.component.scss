@@ -1,0 +1,13 @@
+div.create-post {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #5e72e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    color: white;
+    cursor: pointer;
+}

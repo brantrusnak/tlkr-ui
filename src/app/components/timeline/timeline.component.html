@@ -1,0 +1,5 @@
+<div class="timeline">
+    <h2>Feed</h2>
+    <tlkr-post *ngFor="let item of (post.timeline | async)" [item]="item"></tlkr-post>
+    <span *ngIf="(post.timeline | async)?.length === 0" class="empty">No posts found! Follow some people!</span>
+</div>

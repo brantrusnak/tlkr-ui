@@ -13,7 +13,7 @@ body {
     box-sizing: border-box;
 }
 
-a{
+a {
     text-decoration: none;
     color: #5e72e4;
     background-color: transparent;
@@ -80,6 +80,23 @@ form {
                     display: inline;
                 }
             }
+        }
+    }
+    textarea {
+        box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+        border: 0;
+        transition: box-shadow 0.15s ease;
+        display: block;
+        width: 100%;
+        padding: 0.625rem 0.75rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #8898aa;
+        background-color: #fff;
+        min-width: 300px;
+        min-height: 150px;
+        &:focus {
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
         }
     }
     div.icon-container {

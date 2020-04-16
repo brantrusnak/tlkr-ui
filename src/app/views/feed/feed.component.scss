@@ -1,0 +1,12 @@
+div.feed-container{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    div.create-post-container{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+    }
+}

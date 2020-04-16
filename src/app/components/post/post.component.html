@@ -1,0 +1,16 @@
+<div class="post">
+    <div class="top">
+        <a class="user" [routerLink]="['/user', item.userDetails.username]" >
+            <div class="image"><i class="fas fa-user"></i></div>
+            <div class="display-name">{{item.userDetails.displayName}}</div>
+            <div class="username"> {{item.userDetails.username}} </div>
+        </a>
+    </div>
+    <div class="bottom">
+        <div class="content">{{item.text}}</div>
+        <div class="stats">
+            <div class="favorite-count" (click)="toggleFavorite()"> {{item.favoriteCount}} favorites </div>
+            <div class="time">{{ item.creationDate | date:'dd/MM/yyyy - hh:mmaaa' }}</div>
+        </div>
+    </div>
+</div>

@@ -24,6 +24,11 @@ import { UserSigninComponent } from './components/user-signin/user-signin.compon
 import { UserSignoutComponent } from './components/user-signout/user-signout.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { UserUpdateFormComponent } from './components/user-update-form/user-update-form.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { CreatePostFormComponent } from './components/create-post-form/create-post-form.component';
+import { TimelineComponent } from './components/timeline/timeline.component';
+import { PostComponent } from './components/post/post.component';
+import { UserComponent } from './views/user/user.component';
 
 export function initUserFactory(user: UserService) {
   return () => user.initalize();
@@ -48,7 +53,12 @@ export function initUserFactory(user: UserService) {
     UserSigninComponent,
     UserSignoutComponent,
     DropdownComponent,
-    UserUpdateFormComponent
+    UserUpdateFormComponent,
+    CreatePostComponent,
+    CreatePostFormComponent,
+    TimelineComponent,
+    PostComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

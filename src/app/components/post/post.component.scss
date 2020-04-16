@@ -1,0 +1,56 @@
+div.post {
+    background-color: #fff;
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3),
+        0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+    margin: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+
+    div.top {
+        display: flex;
+        padding: 1rem;
+        border-bottom: 1px solid #e9eff2;
+        color: #525f7f;
+        a.user {
+            display: flex;
+            cursor: pointer;
+            padding: 0 0.5rem;
+            div.image {
+                margin-right: 0.5rem;
+            }
+            div.display-name {
+                max-width: 150px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                margin-right: 0.5rem;
+                font-weight: 700;
+            }
+            div.username {
+                color: #8490a1;
+                font-size: 0.8em;
+                line-height: 24px;
+            }
+        }
+    }
+    div.bottom {
+        div.content {
+            padding: 1rem;
+        }
+        div.stats{
+            border-top: 1px solid #e9eff2;
+            color: #525f7fb0;
+            padding: 0.5rem;
+            display: flex;
+
+            div.favorite-count{
+                cursor: pointer;
+            }
+
+            div.time {
+                flex: auto;
+                text-align: right;
+                font-size: 0.8rem;
+            }
+        }
+    }
+}

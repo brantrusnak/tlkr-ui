@@ -1,0 +1,7 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label>
+        Content
+        <textarea formControlName="content" placeholder="Write here"></textarea>
+    </label>
+    <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Post</button>
+</form>
