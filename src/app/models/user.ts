@@ -8,4 +8,5 @@ export interface User {
     postCount: number;
     updatedAt: string;
     userId: number;
+    username: string;
 }

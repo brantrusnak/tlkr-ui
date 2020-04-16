@@ -26,7 +26,6 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { UserUpdateFormComponent } from './components/user-update-form/user-update-form.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { CreatePostFormComponent } from './components/create-post-form/create-post-form.component';
-import { TimelineComponent } from './components/timeline/timeline.component';
 import { PostComponent } from './components/post/post.component';
 import { UserComponent } from './views/user/user.component';
 
@@ -56,7 +55,6 @@ export function initUserFactory(user: UserService) {
     UserUpdateFormComponent,
     CreatePostComponent,
     CreatePostFormComponent,
-    TimelineComponent,
     PostComponent,
     UserComponent
   ],

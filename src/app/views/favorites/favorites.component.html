@@ -1,1 +1,7 @@
-<p>favorites works!</p>
+<div class="favorites-container">
+    <div class="favorites">
+        <h2>Favorites</h2>
+        <tlkr-post *ngFor="let item of (post.favorites | async)" [item]="item"></tlkr-post>
+        <span *ngIf="(post.favorites | async)?.length === 0" class="empty">No posts found! Go favorite some posts!</span>
+    </div>
+</div>

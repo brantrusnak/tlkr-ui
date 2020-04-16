@@ -10,9 +10,16 @@ import { Post } from '../models/post';
 })
 export class PostService {
   private $timeline = new BehaviorSubject<Post[]>(null);
+  private $favorites = new BehaviorSubject<Post[]>(null);
   public timeline = this.$timeline.asObservable();
+  public favorites = this.$favorites.asObservable();
 
   constructor(private http: HttpService, private config: ConfigService, private alert: AlertService) { }
+
+  public async fetchFavorites() {
+    let favorites = await this.http.get(`${this.config.favorite}s`).toPromise<{posts: Post[]}>();
+    this.$favorites.next(favorites.posts);
+  }
 
   public async fetchTimeline() {
     let timeline = await this.http.get(this.config.timeline).toPromise<{posts: Post[]}>();

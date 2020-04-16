@@ -14,6 +14,15 @@ import { ModalService } from 'src/app/services/modal.service';
 export class UserSignoutComponent implements OnInit {
   public dropdownOptions: DropdownOption[] = [
     {
+      label: 'Profile',
+      callback: async () => {
+        let subscription = this.user.user.subscribe(user => {
+          this.router.navigate([`/user/${user.username}`])
+        });
+        subscription.unsubscribe();
+      }
+    },
+    {
       label: 'Settings',
       callback: () => {
         this.modal.loadComponent(UserUpdateFormComponent);
