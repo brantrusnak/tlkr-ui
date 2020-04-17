@@ -11,18 +11,26 @@ import { filter } from 'rxjs/operators';
 export class RootComponent implements OnInit {
   @ViewChild('outlet', { static: true }) outlet;
   showNav = true;
+  showSidebar = false;
   routerListener: Subscription;
 
   constructor(private router: Router) { }
 
   checkNavbar() {
     this.showNav = typeof this.outlet.activatedRouteData.showNav !== 'undefined' ? this.outlet.activatedRouteData.showNav : true;
+  }
+  
+  checkSidebar() {
+    this.showSidebar = typeof this.outlet.activatedRouteData.showSidebar !== 'undefined' ? this.outlet.activatedRouteData.showSidebar : false;
 	}
 
   ngOnInit(): void {
 		this.routerListener = this.router.events
 			.pipe(filter(event => event instanceof NavigationEnd))
-			.subscribe(response => this.checkNavbar());
+			.subscribe(response => {
+        this.checkNavbar();
+        this.checkSidebar();
+      });
   }
 
   ngOnDestroy(): void {

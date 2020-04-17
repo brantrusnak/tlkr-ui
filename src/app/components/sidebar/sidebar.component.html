@@ -1,0 +1,21 @@
+<div class="sidebar">
+    <div class="user" [routerLink]="['user', (user.user | async)?.username]">
+        <div class="image"><i class="fas fa-user"></i></div>
+        <div class="display-name">{{(user.user | async)?.displayName}}</div>
+    </div>
+    <div class="links">
+        <div class="link" [routerLink]="['/feed']" routerLinkActive="active">
+            Feed
+        </div>
+        <!-- <div class="link" [routerLink]="['/notifications']" routerLinkActive="active">
+            Notifications
+        </div> -->
+        <div class="link" [routerLink]="['/favorites']" routerLinkActive="active">
+            Favorites
+        </div>
+    </div>
+    <div class="options">
+        <div class="option" (click)="signout()">Signout</div>
+        <div class="option" (click)="loadSettings()">Settings</div>
+    </div>
+</div>

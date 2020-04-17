@@ -1,0 +1,59 @@
+div.sidebar {
+    position: relative;
+    min-width: 200px;
+    height: 100%;
+
+    div.user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem 0;
+        cursor: pointer;
+        div.image {
+            height: 40px;
+            width: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #5e72e4;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            color: white;
+        }
+        div.display-name {
+            color: #5e72e4;
+        }
+    }
+
+    div.links {
+        margin: 0.5rem 0;
+        div.link {
+            padding: 0.25rem 0.5rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            outline: none;
+            &.active {
+                color: #5e72e4;
+            }
+        }
+    }
+
+    div.options {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        border-top: 1px solid #e6ecf1;
+        div.option {
+            text-align: center;
+            flex: 1;
+            padding: 1rem;
+            cursor: pointer;
+
+            &:first-of-type {
+                border-right: 1px solid #e6ecf1;
+            }
+        }
+    }
+}

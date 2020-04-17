@@ -1,1 +1,7 @@
-<p>user works!</p>
+<div>
+    {{ (profile.profile | async) | json }}<br>
+</div>
+
+<div class="posts">
+    <tlkr-post *ngFor="let post of (profile.posts | async)" [item]="post"></tlkr-post>
+</div>

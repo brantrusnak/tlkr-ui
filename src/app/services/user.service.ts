@@ -88,10 +88,6 @@ export class UserService {
     return true;
   }
 
-  public getUserById() {
-    // TODO: Implement.
-  }
-
   public async update(values: any, callback: () => void) {
     await this.http.put(this.config.user, values).toPromise();
     await this.getSelf();

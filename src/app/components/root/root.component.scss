@@ -1,9 +1,18 @@
-div.router-container {
-    height: calc(100% - 74px);
+div.layout {
+    display: flex;
     width: 100%;
-    position: relative;
-    background-color: #f6f9fc;
-    &.true-height{
+    height: calc(100% - 50px);
+    &.true-height {
         height: 100%;
+    }
+    div.router-container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        background-color: #f6f9fc;
+    }
+    div.sidebar-container {
+        background: #f5f7f9;
+        border-right: 1px solid #e6ecf1;
     }
 }

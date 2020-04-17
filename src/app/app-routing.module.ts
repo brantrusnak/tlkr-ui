@@ -18,21 +18,33 @@ const routes: Routes = [
   {
     path: 'feed',
     component: FeedComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      showSidebar: true
+    }
   },
   {
     path: 'notifications',
     component: NotificationsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      showSidebar: true
+    }
   },
   {
     path: 'favorites',
     component: FavoritesComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      showSidebar: true
+    }
   },
   {
     path: 'user/:username',
-    component: UserComponent
+    component: UserComponent,
+    data: {
+      showSidebar: true
+    }
   },
   {
     path: 'login',

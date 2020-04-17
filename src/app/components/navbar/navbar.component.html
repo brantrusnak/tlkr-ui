@@ -2,19 +2,7 @@
     <div class="side left">
         <div class="logo">tlkr.</div>
     </div>
-    <div *ngIf="(user.user | async) !== null" class="side middle">
-        <div class="nav-item">
-            <a class="nav-item-link" [routerLink]="['/feed']" routerLinkActive="active">Feed</a>
-        </div>
-        <div class="nav-item">
-            <a class="nav-item-link" [routerLink]="['/notifications']" routerLinkActive="active">Notifications</a>
-        </div>
-        <div class="nav-item">
-            <a class="nav-item-link" [routerLink]="['/favorites']" routerLinkActive="active">Favorites</a>
-        </div>
-    </div>
-    <div class="side right">
-        <tlkr-user-signin *ngIf="(user.user | async) === null"></tlkr-user-signin>
-        <tlkr-user-signout *ngIf="(user.user | async) !== null"></tlkr-user-signout>
+    <div *ngIf="(user.user | async) === null" class="side right">
+        <tlkr-user-signin></tlkr-user-signin>
     </div>
 </nav>
