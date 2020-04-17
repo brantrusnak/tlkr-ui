@@ -1,5 +1,10 @@
-<div>
-    {{ (profile.profile | async) | json }}<br>
+<div class="user">
+    <div class="image"><i class="fas fa-user"></i></div>
+    <h2> {{(profile.profile | async)?.displayName}}</h2>
+    <div class="username">({{(profile.profile | async)?.username}})</div>
+    <div class="followers">{{(profile.profile | async)?.followersCount}} followers</div>
+    <div class="following">following {{(profile.profile | async)?.followingCount}}</div>
+    <div class="post-count">{{(profile.profile | async)?.postCount}} posts</div>
 </div>
 
 <div class="posts">
