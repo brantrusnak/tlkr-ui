@@ -9,7 +9,7 @@
     <div class="bottom">
         <div class="content">{{item.text}}</div>
         <div class="stats">
-            <div class="favorite-count" (click)="toggleFavorite()"> {{item.favoriteCount}} favorites </div>
+            <div class="favorite-count" (click)="toggleFavorite()"> {{item.favoriteCount}} favorite{{item.favoriteCount === 1 ? '' : 's'}} </div>
             <div class="time">{{ item.creationDate | date:'dd/MM/yyyy - hh:mmaaa' }}</div>
         </div>
     </div>
