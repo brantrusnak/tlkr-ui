@@ -28,6 +28,7 @@ import { CreatePostFormComponent } from './components/create-post-form/create-po
 import { PostComponent } from './components/post/post.component';
 import { UserComponent } from './views/user/user.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { DrawerComponent } from './components/drawer/drawer.component';
 
 export function initUserFactory(user: UserService) {
   return () => user.initalize();
@@ -56,7 +57,8 @@ export function initUserFactory(user: UserService) {
     CreatePostFormComponent,
     PostComponent,
     UserComponent,
-    SidebarComponent
+    SidebarComponent,
+    DrawerComponent
   ],
   imports: [
     BrowserModule,

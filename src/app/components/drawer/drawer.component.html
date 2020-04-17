@@ -1,0 +1,14 @@
+<div class="drawer" [ngClass]="{
+    visible: visible,
+    top: drawerPosition == 'top',
+    right: drawerPosition == 'right',
+    bottom: drawerPosition == 'bottom',
+    left: drawerPosition == 'left'
+  }">
+  <div class="exit-container">
+    <i (click)="close()" class="fas fa-times fa-2x"></i>
+  </div>
+  <div class="drawer-content">
+      <ng-content></ng-content>
+  </div>
+</div>

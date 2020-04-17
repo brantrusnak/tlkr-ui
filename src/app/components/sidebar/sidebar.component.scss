@@ -1,13 +1,14 @@
+@import "../../../styling/breakpoints.scss";
 div.sidebar {
     position: relative;
-    min-width: 200px;
     height: 100%;
+    background: white;
+    min-width: 350px;
 
     div.user {
         display: flex;
-        justify-content: center;
         align-items: center;
-        padding: 0.5rem 0;
+        padding: 0.5rem;
         cursor: pointer;
         div.image {
             height: 40px;
@@ -26,7 +27,6 @@ div.sidebar {
     }
 
     div.links {
-        margin: 0.5rem 0;
         div.link {
             padding: 0.25rem 0.5rem;
             font-size: 1.1rem;

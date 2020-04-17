@@ -1,4 +1,5 @@
 @import "../../../styling/colors.scss";
+@import "../../../styling/breakpoints.scss";
 nav {
     background: $navbar-background;
     width: 100%;
@@ -22,12 +23,30 @@ nav {
     div.side {
         flex: 1;
         display: flex;
+        &.left {
+            justify-content: flex-start;
+        }
         &.right {
             justify-content: flex-end;
             padding-right: 0.25rem;
-        }
-        &.left {
-            justify-content: flex-start;
+            i.nav-hamburger {
+                cursor: pointer;
+                @include xs {
+                    display: block;
+                }
+                @include sm {
+                    display: block;
+                }
+                @include md {
+                    display: block;
+                }
+                @include lg {
+                    display: none;
+                }
+                @include xl {
+                    display: none;
+                }
+            }
         }
     }
 }

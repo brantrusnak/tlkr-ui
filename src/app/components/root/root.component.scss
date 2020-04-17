@@ -1,3 +1,4 @@
+@import '../../../styling/breakpoints.scss';
 div.layout {
     display: flex;
     width: 100%;
@@ -14,5 +15,20 @@ div.layout {
     div.sidebar-container {
         background: #f5f7f9;
         border-right: 1px solid #e6ecf1;
+        @include xs {
+            display: none;
+        }
+        @include sm {
+            display: none;
+        }
+        @include md {
+            display: none;
+        }
+        @include lg {
+            display: block;
+        }
+        @include xl {
+            display: block;
+        }
     }
 }

@@ -4,18 +4,18 @@
         <div class="display-name">{{(user.user | async)?.displayName}}</div>
     </div>
     <div class="links">
-        <div class="link" [routerLink]="['/feed']" routerLinkActive="active">
+        <div class="link" [routerLink]="['/feed']" routerLinkActive="active" (click)="closeDrawer();">
             Feed
         </div>
         <!-- <div class="link" [routerLink]="['/notifications']" routerLinkActive="active">
             Notifications
         </div> -->
-        <div class="link" [routerLink]="['/favorites']" routerLinkActive="active">
+        <div class="link" [routerLink]="['/favorites']" routerLinkActive="active" (click)="closeDrawer();">
             Favorites
         </div>
     </div>
     <div class="options">
-        <div class="option" (click)="signout()">Signout</div>
-        <div class="option" (click)="loadSettings()">Settings</div>
+        <div class="option" (click)="signout(); closeDrawer();">Signout</div>
+        <div class="option" (click)="loadSettings(); closeDrawer();">Settings</div>
     </div>
 </div>

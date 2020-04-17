@@ -2,7 +2,12 @@
     <div class="side left">
         <div class="logo">tlkr.</div>
     </div>
-    <div *ngIf="(user.user | async) === null" class="side right">
-        <tlkr-user-signin></tlkr-user-signin>
+    <div class="side right">
+        <tlkr-user-signin *ngIf="(user.user | async) === null"></tlkr-user-signin>
+        <i *ngIf="(user.user | async) !== null" (click)="drawer.open($event);" class="nav-hamburger fas fa-bars fa-2x"></i>
     </div>
 </nav>
+
+<tlkr-drawer #drawer drawerPosition="left">
+    <tlkr-sidebar [drawer]="drawer"></tlkr-sidebar>
+</tlkr-drawer>
