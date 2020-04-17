@@ -12,7 +12,8 @@ export class CreatePostComponent implements OnInit {
   constructor(private modal: ModalService) { }
 
   public loadModal(): void {
-    this.modal.loadComponent(CreatePostFormComponent)
+    this.modal.loadComponent(CreatePostFormComponent);
+    this.modal.heading = 'Create post';
     this.modal.show();
   }
 
