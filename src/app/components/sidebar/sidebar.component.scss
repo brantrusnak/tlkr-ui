@@ -45,15 +45,13 @@ div.sidebar {
         width: 100%;
         display: flex;
         border-top: 1px solid #e6ecf1;
-        div.option {
-            text-align: center;
-            flex: 1;
-            padding: 1rem;
-            cursor: pointer;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0.5rem;
 
-            &:first-of-type {
-                border-right: 1px solid #e6ecf1;
-            }
+        button.option {
+            flex: 1;
+            cursor: pointer;
         }
     }
 }
