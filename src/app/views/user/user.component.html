@@ -15,5 +15,6 @@
     <div class="posts">
         <h2>Posts</h2>
         <tlkr-post *ngFor="let post of (profile.posts | async)" [item]="post"></tlkr-post>
+        <span *ngIf="(profile.posts | async)?.length === 0" class="empty">No posts found!</span>
     </div>
 </div>

@@ -2,20 +2,25 @@ div.profile-container {
     padding: 1rem;
     height: 100%;
     width: 100%;
-    div.user{
-        *{
+    div.user {
+        * {
             margin-right: 0.25rem;
             vertical-align: middle;
         }
-        span.image{
-
+        span.image {
         }
-        span.display-name{
+        span.display-name {
             color: #5e72e4;
             font-size: 2rem;
         }
-        span.username{
+        span.username {
             color: #8490a1;
+        }
+    }
+    div.posts {
+        span.empty {
+            color: #8490a1;
+            font-size: 1.1rem;
         }
     }
 }
