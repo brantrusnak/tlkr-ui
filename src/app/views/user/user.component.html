@@ -3,6 +3,7 @@
         <span class="image"><i class="fas fa-user"></i></span>
         <span class="display-name">{{(profile.profile | async)?.displayName}}</span>
         <span class="username">({{(profile.profile | async)?.username}})</span>
+        <div class="description">{{ (profile.profile | async)?.description }}</div>
     </div>
     
     <div class="stats">
