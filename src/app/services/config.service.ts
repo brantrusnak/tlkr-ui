@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConfigService {
-  private $baseUrl = 'http://localhost';
-  private $apiUrl = `${this.$baseUrl}:5000`;
+  private $baseUrl = 'https://tlkr-backend.herokuapp.com/';
+  private $apiUrl = `${this.$baseUrl}`;
 
   public readonly login = `${this.$apiUrl}/login`;
   public readonly logout = `${this.$apiUrl}/logout`;
